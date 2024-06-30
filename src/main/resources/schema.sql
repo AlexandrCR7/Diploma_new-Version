@@ -13,6 +13,7 @@ name VARCHAR(300) NOT NULL,
 calories INT NOT NULL,
 protein INT NOT NULL,
 fat INT NOT NULL,
-carbohydrates INT NOT NULL
+carbohydrates INT NOT NULL,
+ingredient_id INT NOT NULL,
 FOREIGN KEY (ingredient_id) REFERENCES ingredients (id)
 );

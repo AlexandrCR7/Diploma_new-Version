@@ -15,9 +15,9 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany
-    @JoinTable(name = "ingredients",
-    joinColumns = @JoinColumn(name = "ingredients_id"))
+//    @ManyToMany
+//    @JoinTable(name = "ingredients",
+//    joinColumns = @JoinColumn(name = "ingredients_id"))
     @Column(nullable = false, name = "recipe")
     private String recipe;
     @Column(nullable = false, name = "name")
@@ -30,8 +30,10 @@ public class Recipe {
     private Integer fat;
     @Column(nullable = false, name = "carbohydrates")
     private Integer carbohydrates;
+    @Column(nullable = false, name = "ingredient_id")
+    private Long ingredient_id;
 
-    private Set<Ingredient> ingredients = new HashSet<>();
+//    private Set<Ingredient> ingredients = new HashSet<>();
 
 
 //    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
