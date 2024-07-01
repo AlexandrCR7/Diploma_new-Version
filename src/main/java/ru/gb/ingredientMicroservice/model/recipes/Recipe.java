@@ -32,8 +32,6 @@ public class Recipe {
     private Integer carbohydrates;
     @Column(nullable = false, name = "ingredient_id")
     private Long ingredient_id;
-    @Column(nullable = false, name = "ingredient_id_one")
-    private Long ingredient_id_one;
 
 //    private Set<Ingredient> ingredients = new HashSet<>();
 //
