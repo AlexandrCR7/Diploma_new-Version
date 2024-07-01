@@ -33,6 +33,7 @@ public class Recipe {
     @Column(nullable = false, name = "ingredient_id")
     private Long ingredient_id;
 
+
 //    private Set<Ingredient> ingredients = new HashSet<>();
 //
 
