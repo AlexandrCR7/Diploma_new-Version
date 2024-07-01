@@ -2,10 +2,6 @@ package ru.gb.ingredientMicroservice.model.recipes;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import ru.gb.ingredientMicroservice.model.products.Ingredient;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Table(name = "recipe")
 @Entity

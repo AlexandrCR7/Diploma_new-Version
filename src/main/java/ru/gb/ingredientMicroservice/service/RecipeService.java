@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 import ru.gb.ingredientMicroservice.model.recipes.Recipe;
+import ru.gb.ingredientMicroservice.repositories.ProductRepository;
 import ru.gb.ingredientMicroservice.repositories.RecipeRepository;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final ProductRepository productRepository;
 
     public List<Recipe> showAllChecks() {
         return recipeRepository.findAll();
@@ -27,6 +29,7 @@ public class RecipeService {
     public void deleteById(Long id) {
         recipeRepository.deleteById(id);
     }
+
 
     public Recipe saveProduct(Recipe recipe) {
         recipeRepository.save(recipe);
