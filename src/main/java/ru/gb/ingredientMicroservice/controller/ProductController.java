@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.ingredientMicroservice.model.products.Ingredient;
+import ru.gb.ingredientMicroservice.model.recipes.Recipe;
 import ru.gb.ingredientMicroservice.repositories.ProductRepository;
 import ru.gb.ingredientMicroservice.service.FileWriter;
 import ru.gb.ingredientMicroservice.service.ProductService;
