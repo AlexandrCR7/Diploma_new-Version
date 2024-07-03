@@ -1,10 +1,11 @@
 package ru.gb.ingredientMicroservice.service;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 import ru.gb.ingredientMicroservice.model.recipes.Recipe;
-import ru.gb.ingredientMicroservice.repositories.ProductRepository;
 import ru.gb.ingredientMicroservice.repositories.RecipeRepository;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
-    private final ProductRepository productRepository;
+
 
     public List<Recipe> showAllChecks() {
         return recipeRepository.findAll();
@@ -36,11 +37,18 @@ public class RecipeService {
         return recipe;
     }
 
-//    public Recipe addNewIngredient(Float recipeWeight, Float recipePrice) {
-//        Recipe recipe = new Recipe();
-//        recipe.setCheckWeight(recipeWeight);
-//        recipe.setCheckPrice(recipePrice);
-//        return recipe;
-//    }
+
+    public Recipe addNewIngredient(String newRecipe, String name, Integer calories,
+                                   Integer protein, Integer fat,
+                                   Integer carbohydrates) {
+        Recipe recipe = new Recipe();
+        recipe.setRecipe(newRecipe);
+        recipe.setName(name);
+        recipe.setCalories(calories);
+        recipe.setProtein(protein);
+        recipe.setFat(fat);
+        recipe.setCarbohydrates(carbohydrates);
+        return recipe;
+    }
 }
 

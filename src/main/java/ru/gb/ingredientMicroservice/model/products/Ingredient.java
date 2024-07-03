@@ -1,11 +1,11 @@
 package ru.gb.ingredientMicroservice.model.products;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import ru.gb.ingredientMicroservice.model.recipes.Recipe;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
@@ -24,6 +24,8 @@ public class Ingredient {
     @Column(nullable = false, name = "PRICEFOR100GR")
     private Float priceFor100gr;
 
-//    @ManyToMany(mappedBy = "ingredients")
-//    private Set<Recipe> ingredientSet; //probably we need return hashSet
+    @ManyToMany(mappedBy = "ingredients")
+    @JsonIgnore
+    private List<Recipe> recipe;
+
 }

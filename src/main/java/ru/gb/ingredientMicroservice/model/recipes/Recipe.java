@@ -2,6 +2,9 @@ package ru.gb.ingredientMicroservice.model.recipes;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import ru.gb.ingredientMicroservice.model.products.Ingredient;
+
+import java.util.List;
 
 @Table(name = "recipe")
 @Entity
@@ -11,9 +14,6 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @ManyToMany
-//    @JoinTable(name = "ingredients",
-//    joinColumns = @JoinColumn(name = "ingredients_id"))
     @Column(nullable = false, name = "recipe")
     private String recipe;
     @Column(nullable = false, name = "name")
@@ -26,17 +26,13 @@ public class Recipe {
     private Integer fat;
     @Column(nullable = false, name = "carbohydrates")
     private Integer carbohydrates;
-    @Column(nullable = false, name = "ingredient_id")
-    private Long ingredient_id;
 
-
-//    private Set<Ingredient> ingredients = new HashSet<>();
-//
-
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(name = "recipe_products",
-//            joinColumns = @JoinColumn(name = "checkProducts_id"),
-//            inverseJoinColumns = @JoinColumn(name = "ingredients_id"))
-//    private Set<Ingredient> ingredients;//probably we need return hashSet
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_ingredient",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+    inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+    )
+    private List<Ingredient> ingredients;
 
 }

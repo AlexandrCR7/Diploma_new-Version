@@ -5,7 +5,7 @@ import org.springframework.integration.annotation.MessagingGateway;
 import java.io.IOException;
 
 @MessagingGateway
-public class FileWriter {
+public class ProductFileWriter {
     public void writeToData(String productType, String productName, Float weight, Float priceFor100gr){
         try (java.io.FileWriter fileWriter = new java.io.FileWriter("C:\\Deals\\WorkBook\\java\\SpringTasks\\" +
                 "GB_Diploma\\ingredientMicroservice\\src\\main\\resources\\data.sql", true)){

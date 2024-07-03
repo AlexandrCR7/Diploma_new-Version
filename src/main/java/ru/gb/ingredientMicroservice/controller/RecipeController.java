@@ -1,15 +1,12 @@
 package ru.gb.ingredientMicroservice.controller;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.ingredientMicroservice.model.products.Ingredient;
 import ru.gb.ingredientMicroservice.model.recipes.Recipe;
-import ru.gb.ingredientMicroservice.repositories.ProductRepository;
 import ru.gb.ingredientMicroservice.repositories.RecipeRepository;
-import ru.gb.ingredientMicroservice.service.FileWriter;
-import ru.gb.ingredientMicroservice.service.ProductService;
 import ru.gb.ingredientMicroservice.service.RecipeService;
 
 import java.util.List;
@@ -17,39 +14,47 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping
+@RequestMapping("/recipes")
 public class RecipeController {
 
     @Autowired
     private RecipeService recipeService;
+    @Autowired
+    private RecipeRepository recipeRepository;
 
-    @GetMapping("/showRecipes")
+    @GetMapping
     public List<Recipe> showAll(){
         return recipeService.showAllChecks();
     }
 
-    @GetMapping("/deleteRecipe/{id}")
+    @DeleteMapping("/deleteRecipe/{id}")// change annotation @Delete....
     public void deleteRecipe(@PathVariable Long id){
         recipeService.deleteById(id);
     }
 
-    @GetMapping("/showRecipeById/{id}")
+    @GetMapping("/{id}")//only id
     public Optional<Recipe> showRecipeById(@PathVariable Long id){
         return recipeService.showById(id);
     }
 
-//    @GetMapping("/CreateRecipe")
-//    public String createRecipe(Model model){
-//        model.addAttribute("CreateProduct", recipeRepository.findAll());
-//        return "Check has been created";
-//    }
-//
-//    @PostMapping("/CreateRecipe")
-//    public String createProductAction(@RequestBody Recipe recipe, Model model){
-//        recipeService.saveProduct(recipeService.addNewIngredient(recipe.getCheckWeight(), recipe.getCheckPrice()));
-//        model.addAttribute("product", recipeService.showAllChecks());
-//        return "Check has been created";
-//    }
+    @GetMapping("/createRecipe")
+    public String createRecipe(Model model){
+        model.addAttribute("createProduct", recipeRepository.findAll());
+        return "Check has been created";
+    }
+
+    @PostMapping("/createRecipe")
+    public String createProductAction(@RequestBody Recipe recipe, Model model){
+        recipeService.saveProduct(recipeService.addNewIngredient(recipe.getRecipe(),
+                recipe.getName(),
+                recipe.getCalories(),
+                recipe.getProtein(),
+                recipe.getFat(),
+                recipe.getCarbohydrates()));
+        model.addAttribute("product", recipeService.showAllChecks());
+        return "Check has been created";
+    }
+
 //
 //        @GetMapping("/CreateProduct")
 //    public String createProduct(Model model){
