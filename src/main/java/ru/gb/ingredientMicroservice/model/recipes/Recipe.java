@@ -6,7 +6,7 @@ import ru.gb.ingredientMicroservice.model.products.Ingredient;
 
 import java.util.List;
 
-@Table(name = "recipe")
+@Table(name = "recipes")
 @Entity
 @Data
 public class Recipe {
@@ -26,6 +26,8 @@ public class Recipe {
     private Integer fat;
     @Column(nullable = false, name = "carbohydrates")
     private Integer carbohydrates;
+    @Column(nullable = false, name = "ingredient_id")
+    private Integer ingredient_id;
 
     @ManyToMany
     @JoinTable(

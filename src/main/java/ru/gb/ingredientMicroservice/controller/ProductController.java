@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.ingredientMicroservice.model.products.Ingredient;
-import ru.gb.ingredientMicroservice.service.ProductFileWriter;
+import ru.gb.ingredientMicroservice.service.DBFileWriter;
 import ru.gb.ingredientMicroservice.service.ProductService;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-    ProductFileWriter productFileWriter;
+    DBFileWriter DBFileWriter;
 
 
     @GetMapping//without path
@@ -37,23 +37,23 @@ public class ProductController {
         return productService.showById(id);
     }
 
-//    @GetMapping("/createProduct")
-//    public String createProduct(Model model){
-//        model.addAttribute("CreateProduct", productService.showAll());
-//        return "Tack has been created";
-//    }
+    @GetMapping("/createProduct")
+    public String createProduct(Model model){
+        model.addAttribute("CreateProduct", productService.showAll());
+        return "Tack has been created";
+    }
 
-//    @PostMapping("/createProduct")
-//    public String createProductAction(@RequestBody Ingredient product, Model model){
-//        productService.saveProduct(productService.addNewIngredient(product.getTypeOfProduct(),
-//                product.getCategory(),
-//                product.getWeight(),
-//                product.getPriceFor100gr()));
-//        model.addAttribute("product", productService.showAll());
-//        productFileWriter.writeToData(product.getTypeOfProduct(),
-//                product.getCategory(),
-//                product.getWeight(),
-//                product.getPriceFor100gr());
-//        return "Product has been created";
-//    }
+    @PostMapping("/createProduct")
+    public String createProductAction(@RequestBody Ingredient product, Model model){
+        productService.saveProduct(productService.addNewIngredient(product.getType(),
+                product.getCategory(),
+                product.getWeight(),
+                product.getPrice()));
+        model.addAttribute("recipe", productService.showAll());
+        DBFileWriter.writeToData(product.getType(),
+                product.getCategory(),
+                product.getWeight(),
+                product.getPrice());
+        return "Product has been created";
+    }
 }

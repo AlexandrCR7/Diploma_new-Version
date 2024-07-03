@@ -40,7 +40,7 @@ public class RecipeService {
 
     public Recipe addNewIngredient(String newRecipe, String name, Integer calories,
                                    Integer protein, Integer fat,
-                                   Integer carbohydrates) {
+                                   Integer carbohydrates, Integer ingredient_id) {
         Recipe recipe = new Recipe();
         recipe.setRecipe(newRecipe);
         recipe.setName(name);
@@ -48,6 +48,7 @@ public class RecipeService {
         recipe.setProtein(protein);
         recipe.setFat(fat);
         recipe.setCarbohydrates(carbohydrates);
+        recipe.setIngredient_id(ingredient_id);
         return recipe;
     }
 }
