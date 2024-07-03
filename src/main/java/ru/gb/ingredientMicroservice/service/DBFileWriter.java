@@ -10,7 +10,7 @@ public class DBFileWriter {
     public void writeToData(String productType, String productName, Float weight, Float priceFor100gr) {
         try (java.io.FileWriter fileWriter = new java.io.FileWriter("C:\\Deals\\WorkBook\\java\\SpringTasks\\" +
                 "GB_Diploma\\ingredientMicroservice\\src\\main\\resources\\data.sql", true)) {
-            fileWriter.append("insert into ingredient (type, productName, weight, priceFor100gr)" +
+            fileWriter.append("insert into ingredients (type, category, weight, price)" +
                     "\n" + "values " + "('" + productType + "', " + "'" + productName + "', " + weight + ", " + " '" + priceFor100gr + "'" + ");" + "\n");
         } catch (IOException e) {
             throw new RuntimeException(e);

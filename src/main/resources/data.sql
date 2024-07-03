@@ -14,5 +14,7 @@ insert into recipes (recipe, name, calories, protein, fat, carbohydrates, ingred
 values ('Отварить сосиску 2 минуты', 'Вареная сосиска', 175, 11, 15, 7, 1);
 insert into recipes (recipe, name, calories, protein, fat, carbohydrates, ingredient_id)
 values ('Отварить сосиску 2 минуты', 'Вареная сосиска', 175, 11, 15, 7, 1);
-insert into ingredient (type, productName, weight, priceFor100gr)
+insert into ingredients (type, category, weight, price)
 values ('Клетчатка', 'Мясо', 100.0,  '220.0');
+insert into recipe_ingredient (recipe_id, ingredient_id)
+values (2, 4), (2, 5);
