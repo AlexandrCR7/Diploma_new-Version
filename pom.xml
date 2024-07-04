@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
+<!--		<mapStruct.version>1.5.5.Final</mapStruct.version>-->
 	</properties>
 	<repositories>
 
@@ -50,12 +51,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -97,6 +92,18 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.5.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.5.5.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -109,17 +116,18 @@
 				<scope>import</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>org.postgresql</groupId>
-				<artifactId>postgresql</artifactId>
-				<version>42.7.3</version>
-			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>org.postgresql</groupId>-->
+<!--				<artifactId>postgresql</artifactId>-->
+<!--				<version>42.7.3</version>-->
+<!--			</dependency>-->
 
-			<dependency>
-				<groupId>org.apache.kafka</groupId>
-				<artifactId>kafka_2.13</artifactId>
-				<version>3.7.1</version>
-			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>org.apache.kafka</groupId>-->
+<!--				<artifactId>kafka_2.13</artifactId>-->
+<!--				<version>3.7.1</version>-->
+<!--			</dependency>-->
+
 
 		</dependencies>
 	</dependencyManagement>

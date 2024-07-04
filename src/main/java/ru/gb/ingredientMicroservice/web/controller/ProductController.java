@@ -1,4 +1,4 @@
-package ru.gb.ingredientMicroservice.controller;
+package ru.gb.ingredientMicroservice.web.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.gb.ingredientMicroservice.model.products.Ingredient;
 import ru.gb.ingredientMicroservice.service.DBFileWriter;
 import ru.gb.ingredientMicroservice.service.ProductService;
+import ru.gb.ingredientMicroservice.web.dto.IngredientDto;
+import ru.gb.ingredientMicroservice.web.mapper.IngredientMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,14 +18,15 @@ import java.util.Optional;
 @RequestMapping("/products")//задать путь для контроллера
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+
+    private final ProductService productService;
+    private final IngredientMapper ingredientMapper;
     DBFileWriter DBFileWriter;
 
 
     @GetMapping//without path
-    public List<Ingredient> showAllProducts(){
-        return productService.showAll();
+    public List<IngredientDto> showAllProducts(){
+        return ingredientMapper.toDto(productService.showAll());
     }
 
     @DeleteMapping("/delete/{id}")//deletemapping

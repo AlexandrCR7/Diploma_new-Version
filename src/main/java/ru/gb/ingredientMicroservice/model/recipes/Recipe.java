@@ -1,5 +1,6 @@
 package ru.gb.ingredientMicroservice.model.recipes;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import ru.gb.ingredientMicroservice.model.products.Ingredient;
@@ -35,6 +36,7 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id"),
     inverseJoinColumns = @JoinColumn(name = "ingredient_id")
     )
+    @JsonManagedReference
     private List<Ingredient> ingredients;
 
 }

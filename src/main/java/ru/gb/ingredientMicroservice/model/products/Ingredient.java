@@ -1,5 +1,6 @@
 package ru.gb.ingredientMicroservice.model.products;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class Ingredient {
     private Float price;
 
     @ManyToMany(mappedBy = "ingredients")
-    @JsonIgnore
+    @JsonBackReference
     private List<Recipe> recipe;
 
 }
