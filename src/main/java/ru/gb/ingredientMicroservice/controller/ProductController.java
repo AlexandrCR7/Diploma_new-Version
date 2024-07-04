@@ -26,7 +26,7 @@ public class ProductController {
         return productService.showAll();
     }
 
-    @DeleteMapping("/deleteController/{id}")//deletemapping
+    @DeleteMapping("/delete/{id}")//deletemapping
     public String deleteProductById(@PathVariable Long id){
         productService.deleteById(id);
         return "Product has been deleted";

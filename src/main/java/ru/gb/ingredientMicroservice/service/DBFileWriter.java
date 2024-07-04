@@ -7,7 +7,10 @@ import java.io.IOException;
 
 @MessagingGateway
 public class DBFileWriter {
-    public void writeToData(String productType, String productName, Float weight, Float priceFor100gr) {
+    public void writeToData(String productType,
+                            String productName,
+                            Float weight,
+                            Float priceFor100gr) {
         try (java.io.FileWriter fileWriter = new java.io.FileWriter("C:\\Deals\\WorkBook\\java\\SpringTasks\\" +
                 "GB_Diploma\\ingredientMicroservice\\src\\main\\resources\\data.sql", true)) {
             fileWriter.append("insert into ingredients (type, category, weight, price)" +
@@ -17,9 +20,13 @@ public class DBFileWriter {
         }
     }
 
-    public void RecipesFileWriter(String newRecipe, String name, Integer calories,
-                                  Integer protein, Integer fat,
-                                  Integer carbohydrates, Integer ingredient_id) {
+    public void RecipesFileWriter(String newRecipe,
+                                  String name,
+                                  Integer calories,
+                                  Integer protein,
+                                  Integer fat,
+                                  Integer carbohydrates,
+                                  Integer ingredient_id) {
         try (FileWriter fileWriter = new FileWriter("C:\\Deals\\WorkBook\\java\\SpringTasks\\" +
                 "GB_Diploma\\ingredientMicroservice\\src\\main\\resources\\data.sql", true)) {
             fileWriter.append("insert into recipes (recipe, name, calories, protein, fat, carbohydrates, ingredient_id)" +
