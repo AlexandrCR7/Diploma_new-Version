@@ -5,8 +5,9 @@ package ru.gb.ingredientMicroservice.service;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
+import ru.gb.ingredientMicroservice.model.exception.IngredientNotFoundException;
 import ru.gb.ingredientMicroservice.model.products.Ingredient;
-import ru.gb.ingredientMicroservice.repositories.ProductRepository;
+import ru.gb.ingredientMicroservice.repositories.IngredientRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,24 +15,25 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 @Getter
-public class ProductService {
+public class IngredientService {
 
-    private final ProductRepository productRepository;
+    private final IngredientRepository ingredientRepository;
 
     public List<Ingredient> showAll(){
-        return productRepository.findAll();
+        return ingredientRepository.findAll();
     }
 
-    public Optional<Ingredient> showById(Long id){
-        return productRepository.findById(id);
+    public Ingredient showById(Long id){
+        return ingredientRepository.findById(id).orElseThrow(()->
+                new IngredientNotFoundException("Ingredient by %d not found".formatted(id)));
     }
 
     public void deleteById(Long id){
-        productRepository.deleteById(id);
+        ingredientRepository.deleteById(id);
     }
 
     public void saveProduct(Ingredient ingredient){
-        productRepository.save(ingredient);
+        ingredientRepository.save(ingredient);
     }
 
     public Ingredient addNewIngredient(String typeOfProduct, String category, Float weight, Float priceFor100gr){

@@ -1,12 +1,12 @@
 package ru.gb.ingredientMicroservice.service;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
+import ru.gb.ingredientMicroservice.model.exception.RecipeNotFoundException;
 import ru.gb.ingredientMicroservice.model.recipes.Recipe;
 import ru.gb.ingredientMicroservice.repositories.RecipeRepository;
+import ru.gb.ingredientMicroservice.web.request.IngredientRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,12 +19,13 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
 
 
-    public List<Recipe> showAllChecks() {
+    public List<Recipe> showAll() {
         return recipeRepository.findAll();
     }
 
-    public Optional<Recipe> showById(Long id) {
-        return recipeRepository.findById(id);
+    public Recipe showById(Long id) {
+        return recipeRepository.findById(id).orElseThrow(()->
+                new RecipeNotFoundException("Recipe by %d not found".formatted(id)));
     }
 
     public void deleteById(Long id) {
@@ -33,8 +34,7 @@ public class RecipeService {
 
 
     public Recipe saveProduct(Recipe recipe) {
-        recipeRepository.save(recipe);
-        return recipe;
+        return recipeRepository.save(recipe);
     }
 
 
@@ -50,6 +50,11 @@ public class RecipeService {
         recipe.setCarbohydrates(carbohydrates);
         recipe.setIngredient_id(ingredient_id);
         return recipe;
+    }
+
+    public List<Recipe> generateRecipes(List<IngredientRequest> ingredientRequest) {
+        List<String> ingredients = ingredientRequest.stream().map(IngredientRequest::ingredientCategory).toList();
+        return recipeRepository.findRecipesContainsIngredient(ingredients);
     }
 }
 

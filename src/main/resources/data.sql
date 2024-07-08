@@ -18,3 +18,5 @@ insert into ingredients (type, category, weight, price)
 values ('Клетчатка', 'Мясо', 100.0,  '220.0');
 insert into recipe_ingredient (recipe_id, ingredient_id)
 values (2, 4), (2, 5);
+insert into ingredients (type, category, weight, price)
+values ('Клетчатка', 'Мясо', 100.0,  '220.0');

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.gb.ingredientMicroservice.model.products.Ingredient;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Ingredient, Long> {
+public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 }
