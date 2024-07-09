@@ -6,10 +6,14 @@ import org.springframework.stereotype.Service;
 import ru.gb.ingredientMicroservice.model.exception.RecipeNotFoundException;
 import ru.gb.ingredientMicroservice.model.recipes.Recipe;
 import ru.gb.ingredientMicroservice.repositories.RecipeRepository;
+import ru.gb.ingredientMicroservice.web.dto.RecipeDto;
+import ru.gb.ingredientMicroservice.web.mapper.RecipeMapper;
 import ru.gb.ingredientMicroservice.web.request.IngredientRequest;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.TreeMap;
 
 @Service
 @AllArgsConstructor
@@ -17,6 +21,7 @@ import java.util.Optional;
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final RecipeMapper recipeMapper;
 
 
     public List<Recipe> showAll() {
@@ -24,7 +29,7 @@ public class RecipeService {
     }
 
     public Recipe showById(Long id) {
-        return recipeRepository.findById(id).orElseThrow(()->
+        return recipeRepository.findById(id).orElseThrow(() ->
                 new RecipeNotFoundException("Recipe by %d not found".formatted(id)));
     }
 
@@ -52,9 +57,23 @@ public class RecipeService {
         return recipe;
     }
 
-    public List<Recipe> generateRecipes(List<IngredientRequest> ingredientRequest) {
+    public TreeMap<RecipeDto, Integer> generateRecipes(List<IngredientRequest> ingredientRequest) {
         List<String> ingredients = ingredientRequest.stream().map(IngredientRequest::ingredientCategory).toList();
-        return recipeRepository.findRecipesContainsIngredient(ingredients);
-    }
+        List<Recipe> recipeList = recipeRepository.findRecipesContainsIngredient(ingredients); // получаем список уникальных ингредиентов из запроса
+        TreeMap<RecipeDto, Integer> recipeIntegerHashMap = new TreeMap<>(Collections.reverseOrder());
+        int count = 0;
+        for (Recipe recipe : recipeList) {
+            for (int j = 0; j < ingredients.size(); j++) {
+                for (String ingredient : ingredients)
+                    if (recipe.getIngredients().get(j).getCategory().contains(ingredient)) {
+                        count++;
+                        recipeIntegerHashMap.put(recipeMapper.toDto(recipe), count);
+                    }
+                }
+            }
+            return recipeIntegerHashMap;
+        }
+
 }
+
 

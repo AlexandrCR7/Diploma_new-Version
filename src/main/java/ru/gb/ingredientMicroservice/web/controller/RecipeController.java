@@ -1,16 +1,14 @@
 package ru.gb.ingredientMicroservice.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.ingredientMicroservice.model.recipes.Recipe;
-import ru.gb.ingredientMicroservice.service.DBFileWriter;
 import ru.gb.ingredientMicroservice.service.RecipeService;
 import ru.gb.ingredientMicroservice.web.dto.RecipeDto;
 import ru.gb.ingredientMicroservice.web.mapper.RecipeMapper;
 import ru.gb.ingredientMicroservice.web.request.IngredientRequest;
 
 import java.util.List;
+import java.util.TreeMap;
 
 @RestController //дает представление
 @RequiredArgsConstructor //аннотация только для финальных полей класса
@@ -48,12 +46,18 @@ public class RecipeController {
         return recipeMapper.toDto(recipeService.saveProduct(recipeMapper.toEntity(recipe)));
     }
 
-    //Создать постмэппинг который будет через реквест боди(ProductRequest) принимать список продукт реквестов, придумать метод который
-    // будет находить оптимальный рецепт из списка рецептов, он будет возвращать рецайп дто (Список ДТО или один ДТО)
-
     @PostMapping("/generate")
-    public List<RecipeDto> generateRecipe(@RequestBody List<IngredientRequest> ingredientRequest){
-        return recipeMapper.toDto(recipeService.generateRecipes(ingredientRequest));
+    public TreeMap<RecipeDto, Integer> generateRecipe(@RequestBody List<IngredientRequest> ingredientRequest){
+        return recipeService.generateRecipes(ingredientRequest);
     }
+
+    /**
+    Если откатим мои изменения и вернем обычный метод
+     */
+
+//    @PostMapping("/generate")
+//    public List<RecipeDto> generateRecipe(@RequestBody List<IngredientRequest> ingredientRequest){
+//        return recipeMapper.toDto(recipeService.generateRecipes(ingredientRequest));
+//    }
 
 }
