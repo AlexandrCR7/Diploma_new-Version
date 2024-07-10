@@ -19,6 +19,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
      */
     @Query("SELECT DISTINCT r FROM Recipe r " + //DISTINCT - исключает дублирование
             "JOIN r.ingredients i " +
-            "WHERE i.category IN :productCategories")
+            "WHERE i.category IN :ingredientCategories")
     List<Recipe> findRecipesContainsIngredient(@Param("ingredientCategories") List<String> ingredientCategories);
 }

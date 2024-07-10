@@ -8,11 +8,10 @@ spring:
     hibernate:
       ddl-auto: none
 
-#spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/mydatabase
-#    username: user
-#    password: password
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Recipes_db
+    username: postgres
+    password: 100891
 #    hikari:
 #      maximum-pool-size: 10
 #      minimum-idle: 5
