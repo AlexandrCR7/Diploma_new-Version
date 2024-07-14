@@ -63,24 +63,6 @@ public class RecipeService {
                 .map(IngredientRequest::category)
                 .toList());
     }
-
-//    public TreeMap<RecipeDto, Integer> generateRecipes(List<IngredientRequest> ingredientRequest) {
-//        List<String> ingredients = ingredientRequest.stream().map(IngredientRequest::ingredientCategory).toList();
-//        List<Recipe> recipeList = recipeRepository.findRecipesContainsIngredient(ingredients); // получаем список уникальных ингредиентов из запроса
-//        TreeMap<RecipeDto, Integer> recipeIntegerHashMap = new TreeMap<>(Collections.reverseOrder());
-//        int count = 0;
-//        for (Recipe recipe : recipeList) {
-//            for (int j = 0; j < ingredients.size(); j++) {
-//                for (String ingredient : ingredients)
-//                    if (recipe.getIngredients().get(j).getCategory().contains(ingredient)) {
-//                        count++;
-//                        recipeIntegerHashMap.put(recipeMapper.toDto(recipe), count);
-//                    }
-//                }
-//            }
-//            return recipeIntegerHashMap;
-//        }
-
 }
 
 

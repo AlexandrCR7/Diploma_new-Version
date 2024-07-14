@@ -10,7 +10,6 @@ import ru.gb.ingredientMicroservice.model.products.Ingredient;
 import ru.gb.ingredientMicroservice.repositories.IngredientRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

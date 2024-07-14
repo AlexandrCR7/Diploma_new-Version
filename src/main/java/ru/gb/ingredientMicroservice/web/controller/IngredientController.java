@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.ingredientMicroservice.model.products.Ingredient;
-import ru.gb.ingredientMicroservice.service.DBFileWriter;
 import ru.gb.ingredientMicroservice.service.IngredientService;
 import ru.gb.ingredientMicroservice.web.dto.IngredientDto;
 import ru.gb.ingredientMicroservice.web.mapper.IngredientMapper;
@@ -19,7 +18,6 @@ public class IngredientController {
 
     private final IngredientService ingredientService;
     private final IngredientMapper ingredientMapper;
-    DBFileWriter DBFileWriter;
 
 
     @GetMapping//without path
@@ -51,10 +49,6 @@ public class IngredientController {
                 product.getWeight(),
                 product.getPrice()));
         model.addAttribute("recipe", ingredientService.showAll());
-        DBFileWriter.writeToData(product.getType(),
-                product.getCategory(),
-                product.getWeight(),
-                product.getPrice());
         return "Product has been created";
     }
 }
