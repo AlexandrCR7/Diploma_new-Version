@@ -46,18 +46,19 @@ public class RecipeController {
         return recipeMapper.toDto(recipeService.saveProduct(recipeMapper.toEntity(recipe)));
     }
 
-    @PostMapping("/generate")
-    public TreeMap<RecipeDto, Integer> generateRecipe(@RequestBody List<IngredientRequest> ingredientRequest){
-        return recipeService.generateRecipes(ingredientRequest);
-    }
+//    @PostMapping("/generate")
+//    public TreeMap<RecipeDto, Integer> generateRecipe(@RequestBody List<IngredientRequest> ingredientRequest){
+//        return recipeService.generateRecipes(ingredientRequest);
+//    }
 
     /**
     Если откатим мои изменения и вернем обычный метод
      */
 
-//    @PostMapping("/generate")
-//    public List<RecipeDto> generateRecipe(@RequestBody List<IngredientRequest> ingredientRequest){
-//        return recipeMapper.toDto(recipeService.generateRecipes(ingredientRequest));
-//    }
+    @PostMapping("/generate")
+    public List<RecipeDto> generateRecipe(@RequestBody List<IngredientRequest> ingredientRequest){
+        System.out.println("Получен зарос " + ingredientRequest);
+        return recipeMapper.toDto(recipeService.generateRecipes(ingredientRequest));
+    }
 
 }

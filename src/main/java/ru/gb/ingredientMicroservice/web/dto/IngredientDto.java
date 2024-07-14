@@ -10,7 +10,7 @@ public record IngredientDto(
         String category,
         Float weight,
         Float price,
-        List<Recipe> recipe //Ошибка похожая на циклическую зависимость
+        List<Recipe> recipe
 
 
 ) {

@@ -3,10 +3,10 @@ server:
 spring:
   application:
     name: ingredientMicroservice
-  jpa:
-    generate-ddl: false
-    hibernate:
-      ddl-auto: none
+#  jpa:
+#    generate-ddl: false
+#    hibernate:
+#      ddl-auto: none
 
   datasource:
     url: jdbc:postgresql://localhost:5432/Recipes_db
