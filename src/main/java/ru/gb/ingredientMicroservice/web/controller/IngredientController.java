@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/products")//задать путь для контроллера
+@RequestMapping("/products")
 public class IngredientController {
 
 
@@ -25,13 +25,13 @@ public class IngredientController {
         return ingredientMapper.toDto(ingredientService.showAll());
     }
 
-    @DeleteMapping("/delete/{id}")//deletemapping
+    @DeleteMapping("/delete/{id}")
     public String deleteProductById(@PathVariable Long id){
         ingredientService.deleteById(id);
         return "Product has been deleted";
     }
 
-    @GetMapping("/{id}")//оставить только id
+    @GetMapping("/{id}")
     public IngredientDto showProductById(@PathVariable Long id){
         return ingredientMapper.toDto(ingredientService.showById(id));
     }
