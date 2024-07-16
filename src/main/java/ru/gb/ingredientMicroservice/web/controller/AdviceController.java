@@ -8,16 +8,18 @@ import ru.gb.ingredientMicroservice.model.exception.ExceptionBody;
 import ru.gb.ingredientMicroservice.model.exception.IngredientNotFoundException;
 import ru.gb.ingredientMicroservice.model.exception.RecipeNotFoundException;
 
-@RestControllerAdvice //контроллер, который перехватывает исключения и обрабатывает их
+@RestControllerAdvice
 public class AdviceController {
 
     @ExceptionHandler(RecipeNotFoundException.class)
-    public ResponseEntity<ExceptionBody> handleRecipeNotFoundException(RecipeNotFoundException recipeNotFoundException){
+    public ResponseEntity<ExceptionBody> handleRecipeNotFoundException
+            (RecipeNotFoundException recipeNotFoundException){
         return new ResponseEntity<>(new ExceptionBody(recipeNotFoundException.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(IngredientNotFoundException.class)
-    public ResponseEntity<ExceptionBody> handlerIngredientNotFoundException(IngredientNotFoundException ingredientNotFoundException){
+    public ResponseEntity<ExceptionBody> handlerIngredientNotFoundException
+            (IngredientNotFoundException ingredientNotFoundException){
         return new ResponseEntity<>(new ExceptionBody(ingredientNotFoundException.getMessage()), HttpStatus.NOT_FOUND);
     }
 }

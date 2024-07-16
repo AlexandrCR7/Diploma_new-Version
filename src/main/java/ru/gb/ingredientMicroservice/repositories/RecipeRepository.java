@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
-    /*
+    /**
     Метод использует аннотацию @Query для определения собственного запроса к базе данных.
     Запрос выбирает все рецепты
-    (r), которые содержат ингредиенты (i) из указанных категорий ингредиентов (productCategories).
+     (r), которые содержат ингредиенты (i) из указанных категорий ингредиентов (ingredientCategories).
      */
     @Query("SELECT DISTINCT r FROM Recipe r " + //DISTINCT - исключает дублирование
             "JOIN r.ingredients i " +

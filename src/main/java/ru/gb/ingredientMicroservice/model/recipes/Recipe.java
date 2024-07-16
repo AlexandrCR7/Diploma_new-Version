@@ -30,6 +30,10 @@ public class Recipe {
     @Column(nullable = false, name = "ingredient_id")
     private Integer ingredient_id;
 
+    /**
+     * Поле в котором храниться список ингредиентов.
+     * Данное поле использует связную таблицу для наполнения рецептов ингредиентами
+     */
     @ManyToMany
     @JoinTable(
             name = "recipe_ingredient",
